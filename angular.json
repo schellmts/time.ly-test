@@ -63,7 +63,8 @@
               "browserTarget": "time.ly-test:build:production"
             },
             "development": {
-              "browserTarget": "time.ly-test:build:development"
+              "browserTarget": "time.ly-test:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

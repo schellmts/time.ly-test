@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://timelyapp.time.ly",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
