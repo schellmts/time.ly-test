@@ -1,0 +1,13 @@
+<ng-container *ngIf="target; else buttonTemplate">
+  <a [href]="target" [class]="'text-white font-semibold px-3 py-2 rounded hover:bg-lime-700 duration-200 bg-' + color">
+    {{ text }}
+  </a>
+</ng-container>
+
+<ng-template #buttonTemplate>
+  <button type="button"
+    [class]="'text-white font-semibold px-3 py-2 rounded hover:bg-lime-700 duration-200 bg-' + color"
+    (click)="handleClick($event)">
+    {{ text }}
+  </button>
+</ng-template>

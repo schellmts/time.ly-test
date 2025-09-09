@@ -1,0 +1,49 @@
+<div class="flex flex-col flex-1 lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+  <div *ngFor="let event of events"
+    class="rounded-xl shadow-lg relative hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col border border-gray-100 text-dark p-6 justify-between">
+    <div>
+      <div class="flex justify-between gap-1 items-start">
+        <h3 class="font-bold text-xl sm:text-2xl mb-2">
+          {{event.title}}
+        </h3>
+        <p class="text-sm py-1 bg-primary text-white font-semibold rounded-full px-3">{{event.event_status}}</p>
+      </div>
+      <p class="text-sm py-2" [innerHTML]="event.description_short"></p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm border-t border-gray-100 pt-5">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-calendar-alt text-primary-500 w-4 h-4"></i>
+        <p>
+          <span class="font-medium">Start:</span> {{event.start_datetime | date}}
+          <span>{{event.start_datetime | date}}</span>
+        </p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-clock text-primary-500 w-4 h-4"></i>
+        <p>
+          <span class="font-medium">End:</span> {{event.end_datetime | date}}
+          <span>{{event.end_datetime | date}}</span>
+        </p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-clock text-primary-500 w-4 h-4"></i>
+        <p>
+          <span class="font-medium">Last Update:</span> {{event.updated_at | date}}
+          <span>{{event.updated_at | date}}</span>
+        </p>
+      </div>
+      <div class="flex items-center space-x-2 col-span-full">
+        <i class="fa-solid fa-map-marker-alt text-primary-500 w-4 h-4"></i>
+        <p>
+          <span class="font-medium">Timezone:</span> {{event.timezone}}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <app-dynamic-button [text]="'View Event Details'" [color]="'primary'" [target]="event.url">
+      </app-dynamic-button>
+    </div>
+  </div>
+</div>

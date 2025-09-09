@@ -6,19 +6,6 @@ import { CalendarService } from './services/calendar.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'time.ly-test';
-
-  constructor(private calendarService: CalendarService) { }
-
-  ngOnInit(): void {
-    this.calendarService.getCalendarId().subscribe({
-      next: (res) => {
-        console.log(res)
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-  }
 }
