@@ -23,7 +23,7 @@ export class CalendarService {
   }
 
   getCalendarId(): Observable<number> {
-    const url = `${this.baseUrl}/api/calendars/info`;
+    const url = `${this.baseUrl}/calendars/info`;
     const headers = this.createHeaders();
     const params = { url: this.calendarUrl }
 
@@ -33,7 +33,7 @@ export class CalendarService {
   }
 
   private getEvents(calendarId: number): Observable<any> {
-    const url = `${this.baseUrl}/api/calendars/${calendarId}/events`;
+    const url = `${this.baseUrl}/calendars/${calendarId}/events`;
     const headers = this.createHeaders();
 
     return this.http.get<any>(url, { headers }).pipe(
