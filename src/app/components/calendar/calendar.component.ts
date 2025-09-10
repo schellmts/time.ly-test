@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { CalendarService } from 'src/app/services/calendar.service';
+import { CalendarProps } from 'src/types/Calendar';
 
 @Component({
   selector: 'app-calendar',
@@ -8,13 +9,28 @@ import { CalendarService } from 'src/app/services/calendar.service';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent {
-  events$: Observable<any[]>;
+  private searchVal = new BehaviorSubject<string>('');
+  private allEvents$: Observable<CalendarProps[]> = this.calendarService.fetchAllEvents();
+  events$: Observable<CalendarProps[]>;
 
   constructor(private calendarService: CalendarService) {
-    this.events$ = this.calendarService.fetchAllEvents();
-    this.events$.subscribe(event => {
-      console.log(event)
-    })
+    this.events$ = combineLatest([
+      this.allEvents$,
+      this.searchVal
+    ]).pipe(
+      map(([events, searchTerm]) => {
+        if (!searchTerm) return events;
+
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        return events.filter(event =>
+          event.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+          (event.description_short && event.description_short.toLowerCase().includes(lowerCaseSearchTerm))
+        );
+      })
+    );
   }
 
+  handleSearch(keywords: string): void {
+    this.searchVal.next(keywords)
+  }
 }

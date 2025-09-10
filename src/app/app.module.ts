@@ -10,6 +10,7 @@ import { CalendarCardComponent } from './components/calendar-card/calendar-card.
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { DynamicButtonComponent } from './components/elements/dynamic-button/dynamic-button.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { FilterComponent } from './components/filter/filter.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

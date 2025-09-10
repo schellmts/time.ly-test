@@ -1,27 +1,56 @@
-# TimeLyTest
+# Time.ly - Fullstack Developer Admission Test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+This repository contains the project created for the **Fullstack Developer admission test** at Time.ly.
 
-## Development server
+## Project Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project is a **calendar application** that allows users to view upcoming events, search and filter events by keywords, and navigate through pages of events with pagination.
 
-## Code scaffolding
+The frontend is developed using **Angular 16**, and the layout is fully responsive using **Tailwind CSS**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- Display events in a row-based calendar layout.  
+- Search events by keywords, e.g., typing "Friday" will show all events containing that term.  
+- Pagination for easy navigation across multiple pages of events.  
+- Fully responsive design using **Tailwind CSS**.  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Stack
 
-## Running unit tests
+### Frontend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular**  
+- **TypeScript**  
+- **Tailwind CSS**  
 
-## Running end-to-end tests
+## Getting Started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+- **Node.js**  
+- **Angular CLI**  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/schellmts/time.ly-test
+cd time.ly-test
+```
+
+### Start Application
+
+Run the application in development mode:
+
+```bash
+ng serve
+```
+
+Access the application at [http://localhost:4200](http://localhost:4200).
+
+To execute tests, run:
+
+```bash
+ng test
+```

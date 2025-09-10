@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
+import { CalendarEventsResponse, CalendarInfoResponse, CalendarProps } from 'src/types/Calendar';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CalendarService {
 
   constructor(private http: HttpClient) { }
 
-  fetchAllEvents(): Observable<any> {
+  fetchAllEvents(): Observable<CalendarProps[]> {
     return this.getCalendarId().pipe(
       switchMap(calendarId => this.getEvents(calendarId)),
       catchError(this.handleError)
@@ -27,16 +28,16 @@ export class CalendarService {
     const headers = this.createHeaders();
     const params = { url: this.calendarUrl }
 
-    return this.http.get<any>(url, { headers, params }).pipe(
+    return this.http.get<CalendarInfoResponse>(url, { headers, params }).pipe(
       map(response => response.data.id)
     );
   }
 
-  private getEvents(calendarId: number): Observable<any> {
+  private getEvents(calendarId: number): Observable<CalendarProps[]> {
     const url = `${this.baseUrl}/calendars/${calendarId}/events`;
     const headers = this.createHeaders();
 
-    return this.http.get<any>(url, { headers }).pipe(
+    return this.http.get<CalendarEventsResponse>(url, { headers }).pipe(
       map(response => response.data.items)
     );
   }
