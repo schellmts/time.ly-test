@@ -1,5 +1,5 @@
-<div class="flex flex-col flex-1 lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-  <div *ngFor="let event of events"
+<div class="flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+  <div *ngFor="let event of paginatedEvents"
     class="rounded-xl shadow-lg relative hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col border border-gray-100 text-dark p-6 justify-between">
     <div>
       <div class="flex justify-between gap-1 items-start">
@@ -16,14 +16,14 @@
         <i class="fa-solid fa-calendar-alt text-primary-500 w-4 h-4"></i>
         <p>
           <span class="font-medium">Start:</span> {{event.start_datetime | date}}
-          <span>{{event.start_datetime | date}}</span>
+          <span>{{event.start_datetime | date: 'HH:mm'}}</span>
         </p>
       </div>
       <div class="flex items-center space-x-2">
         <i class="fa-solid fa-clock text-primary-500 w-4 h-4"></i>
         <p>
           <span class="font-medium">End:</span> {{event.end_datetime | date}}
-          <span>{{event.end_datetime | date}}</span>
+          <span>{{event.end_datetime | date: 'HH:mm'}}</span>
         </p>
       </div>
       <div class="flex items-center space-x-2">
@@ -46,4 +46,13 @@
       </app-dynamic-button>
     </div>
   </div>
+</div>
+<div class="flex items-center justify-start gap-5 py-8">
+  <button [ngClass]="{ 'bg-gray-200 pointer-events-none': page === 1 }"
+    class="bg-primary hover:bg-lime-700 text-white px-2 py-1 rounded-md text-sm" (click)="openPage(page - 1)"
+    [disabled]="page === 1">Previous</button>
+  <span class="text-dark">Page {{page}} of {{ totalPages() }}</span>
+  <button [ngClass]="{ 'bg-gray-200 pointer-events-none': page === totalPages() }"
+    class="bg-primary hover:bg-lime-700 text-white px-2 py-1 rounded-md text-sm" (click)="openPage(page + 1)"
+    [disabled]="page === totalPages()">Next</button>
 </div>
