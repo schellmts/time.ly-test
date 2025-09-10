@@ -8,3 +8,15 @@ export interface CalendarProps {
   timezone: string;
   url: string
 }
+
+export interface CalendarInfoResponse {
+  data: {
+    id: number;
+  };
+}
+
+export interface CalendarEventsResponse {
+  data: {
+    items: CalendarProps[];
+  };
+}

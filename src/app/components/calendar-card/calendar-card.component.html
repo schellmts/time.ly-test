@@ -1,3 +1,10 @@
+<div class="flex items-center gap-3 py-4">
+  <label for="itemsPerPage" class="text-sm text-dark font-medium">View Mode:</label>
+  <select id="itemsPerPage" class="border px-4 py-2 text-gray-600 rounded-md text-sm" [(ngModel)]="itemsPerPage"
+    (change)="changeViewMode()">
+    <option *ngFor="let option of perPageOptions" [value]="option">{{ option }}</option>
+  </select>
+</div>
 <div class="flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
   <div *ngFor="let event of paginatedEvents"
     class="rounded-xl shadow-lg relative hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col border border-gray-100 text-dark p-6 justify-between">
@@ -48,11 +55,11 @@
   </div>
 </div>
 <div class="flex items-center justify-start gap-5 py-8">
-  <button [ngClass]="{ 'bg-gray-200 pointer-events-none': page === 1 }"
+  <button [ngClass]="{ 'hidden': page === 1 }"
     class="bg-primary hover:bg-lime-700 text-white px-2 py-1 rounded-md text-sm" (click)="openPage(page - 1)"
     [disabled]="page === 1">Previous</button>
   <span class="text-dark">Page {{page}} of {{ totalPages() }}</span>
-  <button [ngClass]="{ 'bg-gray-200 pointer-events-none': page === totalPages() }"
+  <button [ngClass]="{ 'hidden': page === totalPages() }"
     class="bg-primary hover:bg-lime-700 text-white px-2 py-1 rounded-md text-sm" (click)="openPage(page + 1)"
     [disabled]="page === totalPages()">Next</button>
 </div>

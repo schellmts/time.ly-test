@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CalendarProps } from 'src/types/Calendar';
 
 @Component({
   selector: 'app-calendar-card',
@@ -6,12 +7,13 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   styleUrls: ['./calendar-card.component.css']
 })
 export class CalendarCardComponent implements OnChanges {
-  @Input() events: any = []
+  @Input() events: CalendarProps[] = []
   @Input() isLoading: boolean = false;
 
   page: number = 1;
   itemsPerPage: number = 3;
-  paginatedEvents: any[] = [];
+  perPageOptions: number[] = [3, 6, 9, 12]
+  paginatedEvents: CalendarProps[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['events']) {
@@ -32,6 +34,11 @@ export class CalendarCardComponent implements OnChanges {
   openPage(page: number) {
     if (page < 1 || page > this.totalPages()) return;
     this.page = page;
+    this.updatePagination();
+  }
+
+  changeViewMode() {
+    this.page = 1;
     this.updatePagination();
   }
 }
